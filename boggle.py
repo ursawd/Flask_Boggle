@@ -4,8 +4,7 @@ from random import choice
 import string
 
 
-class Boggle():
-
+class Boggle:
     def __init__(self):
 
         self.words = self.read_dict("words.txt")
@@ -22,9 +21,10 @@ class Boggle():
         """Make and return a random boggle board."""
 
         board = []
+        board_size = 5
 
-        for y in range(5):
-            row = [choice(string.ascii_uppercase) for i in range(5)]
+        for y in range(board_size):
+            row = [choice(string.ascii_uppercase) for i in range(board_size)]
             board.append(row)
 
         return board
