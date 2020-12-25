@@ -14,3 +14,9 @@ game_board = boggle_game.make_board()
 def index():
     session["game_board"] = game_board
     return render_template("index.html", game_board=game_board)
+
+
+@app.route("/validate_word")
+def validate_word():
+    print(response.args)
+    return "HELLO "

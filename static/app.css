@@ -1,23 +1,38 @@
 h1 {
-  color: blue;
+  color: midnightblue;
 }
 p {
   color: red;
-  border: 1px solid green;
 }
 body {
   font-family: "Times New Roman", Times, serif;
-}
-table,
-td {
-  border: 1px solid black;
-}
-table {
-  border-collapse: collapse;
-  background-color: lightskyblue;
 }
 td {
   width: 40px;
   text-align: center;
   font-size: 2rem;
+}
+input {
+  font-size: 1.2rem;
+}
+button {
+  height: 26px;
+}
+#main {
+  margin: 0 auto;
+  width: 40vw;
+  text-align: center;
+  background-color: lightgray;
+}
+
+/* game board table and td */
+#board,
+.board-col {
+  border: 1px solid black;
+}
+/* game board table  */
+#board {
+  border-collapse: collapse;
+  background-color: lightskyblue;
+  margin: 0 auto;
 }

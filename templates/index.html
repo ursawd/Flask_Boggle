@@ -1,20 +1,31 @@
 {% extends "base.html"%} {% block head %}
 <title>Boggle Game</title>
 {% endblock %} {% block content %}
-<h1>Would You Like To Play A Game?</h1>
-<h3>Play the Flask Boggle Game</h3>
-<p>Try and find all the words in the table</p>
-<table id="board">
-  <tbody>
-    {% for row in game_board%}
-    <tr class="board-row">
-      {% for letter in row%}
-      <td class="board-col">{{letter}}</td>
+<div id="main">
+  <h1>Would You Like<br />To Play A Game?</h1>
+  <h3>Play the Flask Boggle Game</h3>
+  <p>Try and find all the words in the table</p>
+  <table id="board">
+    <tbody>
+      {% for row in game_board%}
+      <tr class="board-row">
+        {% for letter in row%}
+        <td class="board-col">{{letter}}</td>
+        {% endfor %}
+      </tr>
       {% endfor %}
-    </tr>
-
-    {% endfor %}
-  </tbody>
-</table>
-
+    </tbody>
+  </table>
+  <form action="" id="guess">
+    <!-- <label for="word_guess">Enter a word to guess</label> -->
+    <br />
+    <input
+      type="text"
+      name="guess"
+      id="word-guess"
+      placeholder="Enter a word to guess"
+    />
+    <button id="submit-guess">Submit</button>
+  </form>
+</div>
 {% endblock %}
