@@ -1,5 +1,6 @@
 h1 {
   color: midnightblue;
+  font-size: 1.6rem;
 }
 p {
   color: red;
@@ -18,11 +19,15 @@ input {
 button {
   height: 26px;
 }
+.para {
+  font-weight: bold;
+}
 #main {
   margin: 0 auto;
   width: 40vw;
   text-align: center;
   background-color: lightgray;
+  min-height: 60vh;
 }
 
 /* game board table and td */
@@ -35,4 +40,7 @@ button {
   border-collapse: collapse;
   background-color: lightskyblue;
   margin: 0 auto;
+}
+#guess {
+  margin: 5px 0;
 }

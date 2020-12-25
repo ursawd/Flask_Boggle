@@ -4,8 +4,10 @@ $("#submit-guess").on("click", (e) => {
   e.preventDefault();
   handleGuess();
 });
-function handleGuess() {
+async function handleGuess() {
   //   retrieve guessed word from input element
   let guess = $("#word-guess").val();
   $("#word-guess").val(""); //reset guess input element to blank
+
+  response = await axios.post("/check_word", { guess });
 }
