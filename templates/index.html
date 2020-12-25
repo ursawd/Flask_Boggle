@@ -2,31 +2,50 @@
 <title>Boggle Game</title>
 {% endblock %} {% block content %}
 <div id="main">
-  <h1>Would You Like<br />To Play A Game?</h1>
-  <h3>Play the Flask Boggle Game</h3>
-  <p class="para">Try and find all the words in the table</p>
-  <table id="board">
-    <tbody>
-      {% for row in game_board%}
-      <tr class="board-row">
-        {% for letter in row%}
-        <td class="board-col">{{letter}}</td>
-        {% endfor %}
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <form action="" id="guess">
-    <!-- <label for="word_guess">Enter a word to guess</label> -->
-    <br />
-    <input
-      type="text"
-      name="guess"
-      id="word-guess"
-      placeholder="Enter a word to guess"
-    />
-    <button id="submit-guess">Submit</button>
-  </form>
-  <p id="checked"></p>
+    <h1>Would You Like<br />To Play A Game?</h1>
+    <h3>Play the Flask Boggle Game</h3>
+    <p class="para">Try and find all the words in the table</p>
+    <div class="container">
+        <div class="side-bar">
+            <h4>Scores</h4>
+            <p class="scoring">Current Score</p>
+            <p id="current-score" class="scoring">0</p>
+            <p class="scoring">High Score</p>
+            <p id="high-score" class="scoring">0</p>
+        </div>
+        <div id="table-div">
+            <table id="board">
+                <tbody>
+                    {% for row in game_board%}
+                    <tr class="board-row">
+                        {% for letter in row%}
+                        <td class="board-col">{{letter}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="side-bar">
+            <h4>Info</h4>
+            <p class="scoring">Time Remaining</p>
+            <p id="time-remaining" class="scoring">0</p>
+            <p class="scoring">Games Played</p>
+            <p id="games-played" class="scoring">0</p>
+        </div>
+    </div>
+
+    <form action="" id="guess">
+        <!-- <label for="word_guess">Enter a word to guess</label> -->
+        <br />
+        <input
+            type="text"
+            name="guess"
+            id="word-guess"
+            placeholder="Enter a word to guess"
+        />
+        <button id="submit-guess">Submit</button>
+    </form>
+    <p id="checked"></p>
 </div>
 {% endblock %}

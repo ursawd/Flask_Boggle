@@ -22,6 +22,14 @@ button {
 .para {
   font-weight: bold;
 }
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+.side-bar {
+  width: 25%;
+  background-color: rgba(248, 216, 134, 0.548);
+}
 #main {
   margin: 0 auto;
   width: 40vw;
