@@ -7,6 +7,8 @@
 let score = 0;
 // time remaining to continue guessing
 let timeRemaining = 60;
+// array to hold words already guessed
+let guessedWords = [];
 
 //
 //^^^^^^^^^^^^^^^^^^^^^^^^^^GAME OPERATION^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -38,6 +40,17 @@ async function handleGuess() {
     let guess = $("#word-guess").val();
     $("#word-guess").val(""); //reset guess input element to blank
 
+    // track guessed word to check for duplicate guesses
+    if (guessedWords.includes(guess)) {
+        // already guessed this word
+        // inform user
+        $("#checked").text(`Already guessed "${guess}". Guess again`);
+        return;
+    } else {
+        // new guess, add to guesses in guessedWords
+        guessedWords.push(guess);
+    }
+
     // send guessed word to server to check if valid
     // response contains what is sent back by server
     let prams = {
@@ -46,6 +59,7 @@ async function handleGuess() {
     let response = await axios.post("/check_word", prams);
     $("#checked").text("Guess status: " + response.data["result"]);
     keepScore(response.data["result"], guess);
+    return;
 }
 //------------------------------------------------------------------
 function keepScore(status, guess) {
@@ -70,10 +84,10 @@ async function displayStats() {
         score: score,
     };
     let response = await axios.post("/scores", prams);
-    console.log("scores response", response);
-    console.log(response.data);
+    // retrieve data from server response
     let gamesPlayed = response.data["gamesplayed"];
     let highScore = response.data["highscore"];
+    //update html board
     $("#high-score").text(highScore);
     $("#games-played").text(gamesPlayed);
     return;
