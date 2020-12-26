@@ -19,6 +19,7 @@ let kill = setInterval(() => {
     if (timeRemaining == 40) {
         clearInterval(kill);
         $("#guess").text("GAME OVER");
+        displayStats();
     }
 }, 1000);
 
@@ -45,9 +46,9 @@ async function handleGuess() {
     };
     let response = await axios.post("/check_word", prams);
     $("#checked").text("Guess status: " + response.data["result"]);
-
     keepScore(response.data["result"], guess);
 }
+//------------------------------------------------------------------
 function keepScore(status, guess) {
     // keeps / displays current game score
     //
@@ -58,6 +59,12 @@ function keepScore(status, guess) {
     // track / display current score
     score += guess.length; //status contains
     $("#current-score").text(score);
-
     return;
+}
+//------------------------------------------------------------------
+async function displayStats() {
+    let prams = {
+        score: score,
+    };
+    let response = await axios.post("/get_score", prams);
 }

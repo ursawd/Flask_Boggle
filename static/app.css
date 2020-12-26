@@ -1,54 +1,66 @@
 h1 {
-  color: midnightblue;
-  font-size: 1.6rem;
+    color: midnightblue;
+    font-size: 1.6rem;
 }
 p {
-  color: red;
+    color: red;
 }
 body {
-  font-family: "Times New Roman", Times, serif;
+    font-family: "Fira Code", monospace;
 }
 td {
-  width: 40px;
-  text-align: center;
-  font-size: 2rem;
+    width: 40px;
+    text-align: center;
+    font-size: 2rem;
 }
 input {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 button {
-  height: 26px;
+    height: 26px;
+}
+.double {
+    text-decoration: double underline;
+}
+.title {
+    text-decoration: underline;
+}
+.number {
+    font-size: 1.5rem;
 }
 .para {
-  font-weight: bold;
+    font-weight: bold;
 }
 .container {
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
 .side-bar {
-  width: 25%;
-  background-color: rgba(248, 216, 134, 0.548);
+    width: 25%;
+    background-color: rgba(248, 216, 134, 0.548);
+}
+.scoring {
+    color: midnightblue;
 }
 #main {
-  margin: 0 auto;
-  width: 40vw;
-  text-align: center;
-  background-color: lightgray;
-  min-height: 60vh;
+    margin: 0 auto;
+    width: 40vw;
+    text-align: center;
+    background-color: lightgray;
+    min-height: 60vh;
 }
 
 /* game board table and td */
 #board,
 .board-col {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 /* game board table  */
 #board {
-  border-collapse: collapse;
-  background-color: lightskyblue;
-  margin: 0 auto;
+    border-collapse: collapse;
+    background-color: lightskyblue;
+    margin: 0 auto;
 }
 #guess {
-  margin: 5px 0;
+    margin: 5px 0;
 }
