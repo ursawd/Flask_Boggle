@@ -16,7 +16,15 @@ gamesplayed = 0
 def index():
     """create game board in html page"""
     session["game_board"] = game_board
-    return render_template("index.html", game_board=game_board)
+
+    if "highscore" not in session:
+        session["highscore"] = 0
+    if "gamesplayed" not in session:
+        session["gamesplayed"] = 0
+
+    return render_template(
+        "index.html", game_board=game_board, highscore=session["highscore"], gamesplayed=session["gamesplayed"]
+    )
 
 
 @app.route("/check_word", methods=["POST"])
@@ -34,7 +42,7 @@ def check_word():
 
 @app.route("/scores", methods=["POST"])
 def scores():
-    """receive highscore / return games played
+    """receive score / return games played
     store both in session storage"""
     # define as global variable
     global gamesplayed
@@ -42,9 +50,14 @@ def scores():
     gamesplayed += 1
     # store gamesplayed in server session storage
     session["gamesplayed"] = gamesplayed
-    # get highscore from POST variables
-    highscore = request.json["highscore"]
+
+    # get game score from POST variables
+    score = request.json["score"]
+    highscore = session["highscore"]
+    if score > highscore:
+        highscore = score
     session["highscore"] = highscore
+
     # prepare gamesplayed value to be returned to axios call
-    gamesplayed_json = jsonify(gamesplayed=gamesplayed)
-    return gamesplayed_json
+    gamesinfo_json = jsonify(gamesplayed=gamesplayed, highscore=highscore)
+    return gamesinfo_json

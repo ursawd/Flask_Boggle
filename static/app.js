@@ -6,10 +6,8 @@
 // running score of a single game
 let score = 0;
 // time remaining to continue guessing
-let timeRemaining = 15;
+let timeRemaining = 60;
 
-let highScore = 0;
-let gamesPlayed = 0;
 //
 //^^^^^^^^^^^^^^^^^^^^^^^^^^GAME OPERATION^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //
@@ -44,7 +42,6 @@ async function handleGuess() {
     // response contains what is sent back by server
     let prams = {
         word: guess,
-        test: "test",
     };
     let response = await axios.post("/check_word", prams);
     $("#checked").text("Guess status: " + response.data["result"]);
@@ -54,18 +51,15 @@ async function handleGuess() {
 function keepScore(status, guess) {
     // keeps / displays current game score
     //
+    // possible status values: ok, not-on-board, not-word
     // disreguard all status except "ok"
     if (status != "ok") {
         return;
     }
-    // track / display current score
-    score += guess.length; //status contains
-    console.log(score, highScore);
-    if (score > highScore) {
-        highScore = score;
-        $("#high-score").text(highScore);
-    }
+    // display current score
+    score += guess.length;
     $("#current-score").text(score);
+
     return;
 }
 //------------------------------------------------------------------
@@ -73,12 +67,14 @@ async function displayStats() {
     //pass highscore to server, get games played in return
     // update games played on board
     let prams = {
-        highscore: highScore,
+        score: score,
     };
     let response = await axios.post("/scores", prams);
-    console.log(response);
-
-    gamesPlayed = response.data["gamesplayed"];
-
+    console.log("scores response", response);
+    console.log(response.data);
+    let gamesPlayed = response.data["gamesplayed"];
+    let highScore = response.data["highscore"];
+    $("#high-score").text(highScore);
     $("#games-played").text(gamesPlayed);
+    return;
 }
