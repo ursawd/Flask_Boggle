@@ -9,6 +9,7 @@ app.config["SECRET_KEY"] = "secret-phrase"
 """create game board list of lists with letters"""
 boggle_game = Boggle()
 game_board = boggle_game.make_board()
+gamesplayed = 0
 
 # ----------------------------------------------
 @app.route("/")
@@ -31,8 +32,19 @@ def check_word():
     return check_result_json
 
 
-@app.route("/get_score", methods=["POST"])
-def get_score():
-    score = request.json["score"]
-    print("***************", score)
-    return "Got Score"
+@app.route("/scores", methods=["POST"])
+def scores():
+    """receive highscore / return games played
+    store both in session storage"""
+    # define as global variable
+    global gamesplayed
+    # increment games played each time route is used
+    gamesplayed += 1
+    # store gamesplayed in server session storage
+    session["gamesplayed"] = gamesplayed
+    # get highscore from POST variables
+    highscore = request.json["highscore"]
+    session["highscore"] = highscore
+    # prepare gamesplayed value to be returned to axios call
+    gamesplayed_json = jsonify(gamesplayed=gamesplayed)
+    return gamesplayed_json

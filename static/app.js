@@ -6,7 +6,10 @@
 // running score of a single game
 let score = 0;
 // time remaining to continue guessing
-let timeRemaining = 60;
+let timeRemaining = 15;
+
+let highScore = 0;
+let gamesPlayed = 0;
 //
 //^^^^^^^^^^^^^^^^^^^^^^^^^^GAME OPERATION^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //
@@ -14,9 +17,8 @@ let timeRemaining = 60;
 // stop after 60 seconds
 let kill = setInterval(() => {
     timeRemaining -= 1;
-    console.log(timeRemaining);
     $("#time-remaining").text(timeRemaining);
-    if (timeRemaining == 40) {
+    if (timeRemaining == 0) {
         clearInterval(kill);
         $("#guess").text("GAME OVER");
         displayStats();
@@ -58,13 +60,25 @@ function keepScore(status, guess) {
     }
     // track / display current score
     score += guess.length; //status contains
+    console.log(score, highScore);
+    if (score > highScore) {
+        highScore = score;
+        $("#high-score").text(highScore);
+    }
     $("#current-score").text(score);
     return;
 }
 //------------------------------------------------------------------
 async function displayStats() {
+    //pass highscore to server, get games played in return
+    // update games played on board
     let prams = {
-        score: score,
+        highscore: highScore,
     };
-    let response = await axios.post("/get_score", prams);
+    let response = await axios.post("/scores", prams);
+    console.log(response);
+
+    gamesPlayed = response.data["gamesplayed"];
+
+    $("#games-played").text(gamesPlayed);
 }
