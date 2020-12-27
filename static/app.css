@@ -3,11 +3,22 @@ h1 {
     color: #fff;
     font-size: 1.6rem;
 }
+h3 {
+    color: #fff;
+    text-decoration: underline;
+}
 p {
-    color: red;
+    color: white;
 }
 body {
     font-family: "Fira Code", monospace;
+    background-image: linear-gradient(
+        to bottom right,
+        white,
+        rgb(101, 101, 187),
+        white
+    );
+    height: 100vh;
 }
 td {
     width: 45px;
@@ -35,6 +46,7 @@ button {
 }
 .para {
     font-weight: bold;
+    color: silver;
 }
 .container {
     display: flex;
@@ -42,16 +54,17 @@ button {
 }
 .side-bar {
     width: 25%;
-    background-color: rgb(248, 231, 209);
+    background-color: #01b1b1;
+    color: white;
 }
 .scoring {
-    color: midnightblue;
+    color: white;
 }
 #main {
     margin: 0 auto;
     width: 40vw;
     text-align: center;
-    background-color: lightgray;
+    background-color: black;
     min-height: 70vh;
 }
 
@@ -63,9 +76,12 @@ button {
 /* game board table  */
 #board {
     border-collapse: collapse;
-    background-color: lightskyblue;
+    background-color: #01b1b1;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     margin: 0 auto;
 }
 #guess {
     margin: 5px 0;
+    color: #fff;
 }
